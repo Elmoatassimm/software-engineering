@@ -1,0 +1,25 @@
+@startuml
+!define C4Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title Mini Bank System - Context Diagram
+
+Person(customer, "Customer", "Uses the ATM or web interface to perform transactions")
+Person(admin, "Bank Administrator", "Manages user accounts and views reports")
+
+System(bankingSystem, "Mini Bank System", "Handles ATM transactions, web requests, and account management")
+
+System_Ext(atm, "ATM Interface", "Physical or simulated ATM machine for user transactions")
+System_Ext(webApp, "Web Application", "Provides online access to customer accounts and administration")
+System_Ext(notificationService, "Notification Service", "Sends notifications via email/SMS")
+System_Ext(bankDB, "Database", "Stores account data, transactions, and logs")
+
+Rel(customer, atm, "Withdraws cash, checks balance, changes PIN")
+Rel(customer, webApp, "Performs online transactions, checks balance")
+Rel(admin, webApp, "Manages user accounts, views reports")
+Rel(bankingSystem, atm, "Processes ATM transactions")
+Rel(bankingSystem, webApp, "Handles API requests")
+Rel(bankingSystem, notificationService, "Sends notifications for transactions")
+Rel(bankingSystem, bankDB, "Reads/writes account data, logs transactions")
+
+@enduml
